@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 name: inochi2d-android
+=======
+name:1 inochi2d-android
+>>>>>>> 1f70925c0ba4d18a444b36074540a44005b4e891
 
 on:
   workflow_dispatch:
@@ -80,7 +84,11 @@ jobs:
             -I "$GLUE_DIR" -I app/src/main/cpp/include \
             app/src/main/cpp/main.c "$GLUE_DIR/android_native_app_glue.c" \
             -L app/src/main/jniLibs/armeabi-v7a -linochi2d \
+<<<<<<< HEAD
             -landroid -lEGL -lGLESv2 -llog -lm \
+=======
+            -landroid -lEGL -lGLESv2 -llog \
+>>>>>>> 1f70925c0ba4d18a444b36074540a44005b4e891
             -o app/src/main/jniLibs/armeabi-v7a/libmain.so
 
       - uses: actions/setup-java@v4
@@ -88,10 +96,13 @@ jobs:
           distribution: temurin
           java-version: "17"
 
+<<<<<<< HEAD
       # NOTE: explicitly list packages here and never include the bare
       # "tools" package — Google's cmdline-tools stopped shipping it, so
       # the action's old default (which included "tools") now fails with
       # "Failed to find package 'tools'" on current runner images.
+=======
+>>>>>>> 1f70925c0ba4d18a444b36074540a44005b4e891
       - uses: android-actions/setup-android@v4
         with:
           packages: "platforms;android-34 build-tools;34.0.0 platform-tools"
