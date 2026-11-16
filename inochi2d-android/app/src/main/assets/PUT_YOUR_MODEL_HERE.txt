@@ -1,7 +1,0 @@
-Drop your Inochi2D puppet file (a .inp file) in this folder, e.g.:
-
-    app/src/main/assets/model.inp
-
-main.c scans this folder at startup and loads the first *.inp it finds.
-You can delete this placeholder file once a real .inp is here (it's
-only here so git tracks the otherwise-empty assets/ folder).
