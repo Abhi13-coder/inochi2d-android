@@ -2,7 +2,12 @@
 name: inochi2d-android
 =======
 <<<<<<< HEAD
+<<<<<<< HEAD
 name: inochi2d-android
+=======
+name:1 inochi2d-android
+>>>>>>> 1f70925c0ba4d18a444b36074540a44005b4e891
+>>>>>>> a1ead2375bd5fe693bf46f0a3e26dc0b054592bd
 =======
 name:1 inochi2d-android
 >>>>>>> 1f70925c0ba4d18a444b36074540a44005b4e891
@@ -92,7 +97,12 @@ jobs:
             -landroid -lEGL -lGLESv2 -llog -lm \
 =======
 <<<<<<< HEAD
+<<<<<<< HEAD
             -landroid -lEGL -lGLESv2 -llog -lm \
+=======
+            -landroid -lEGL -lGLESv2 -llog \
+>>>>>>> 1f70925c0ba4d18a444b36074540a44005b4e891
+>>>>>>> a1ead2375bd5fe693bf46f0a3e26dc0b054592bd
 =======
             -landroid -lEGL -lGLESv2 -llog \
 >>>>>>> 1f70925c0ba4d18a444b36074540a44005b4e891
@@ -105,14 +115,22 @@ jobs:
           java-version: "17"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
+>>>>>>> a1ead2375bd5fe693bf46f0a3e26dc0b054592bd
+=======
 >>>>>>> a1ead2375bd5fe693bf46f0a3e26dc0b054592bd
       # NOTE: explicitly list packages here and never include the bare
       # "tools" package — Google's cmdline-tools stopped shipping it, so
       # the action's old default (which included "tools") now fails with
       # "Failed to find package 'tools'" on current runner images.
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 1f70925c0ba4d18a444b36074540a44005b4e891
+>>>>>>> a1ead2375bd5fe693bf46f0a3e26dc0b054592bd
 =======
 =======
 >>>>>>> 1f70925c0ba4d18a444b36074540a44005b4e891
