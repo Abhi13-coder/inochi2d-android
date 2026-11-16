@@ -1,4 +1,4 @@
-name: inochi2d-android
+name:1 inochi2d-android
 
 on:
   workflow_dispatch:
