@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> a1ead2375bd5fe693bf46f0a3e26dc0b054592bd
 // Inochi2D puppet viewer — Android NativeActivity + GLES2.
 //
 // Loads the first *.inp model found in app/src/main/assets/, renders it
@@ -21,18 +25,39 @@
 #include <android/log.h>
 #include <android/asset_manager.h>
 #include <android/input.h>
+<<<<<<< HEAD
+=======
+=======
+#include <android_native_app_glue.h>
+#include <android/log.h>
+>>>>>>> 1f70925c0ba4d18a444b36074540a44005b4e891
+>>>>>>> a1ead2375bd5fe693bf46f0a3e26dc0b054592bd
 #include <EGL/egl.h>
 #include <GLES2/gl2.h>
 #include <time.h>
 #include <string.h>
+<<<<<<< HEAD
 #include <stdlib.h>
 #include <stdbool.h>
 #include <math.h>
+=======
+<<<<<<< HEAD
+#include <stdlib.h>
+#include <stdbool.h>
+#include <math.h>
+=======
+#include <stdbool.h>
+>>>>>>> 1f70925c0ba4d18a444b36074540a44005b4e891
+>>>>>>> a1ead2375bd5fe693bf46f0a3e26dc0b054592bd
 
 #include "inochi2d.h"   // rename here if your generated header differs
 
 #define LOG_TAG "inochi2d-app"
 #define LOGI(...) __android_log_print(ANDROID_LOG_INFO, LOG_TAG, __VA_ARGS__)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> a1ead2375bd5fe693bf46f0a3e26dc0b054592bd
 #define LOGW(...) __android_log_print(ANDROID_LOG_WARN, LOG_TAG, __VA_ARGS__)
 #define LOGE(...) __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, __VA_ARGS__)
 
@@ -389,6 +414,31 @@ static int initDisplay(struct engine* e) {
     const EGLint attribs[] = {
         EGL_SURFACE_TYPE, EGL_WINDOW_BIT,
         EGL_BLUE_SIZE, 8, EGL_GREEN_SIZE, 8, EGL_RED_SIZE, 8, EGL_ALPHA_SIZE, 8,
+<<<<<<< HEAD
+=======
+=======
+#define LOGE(...) __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, __VA_ARGS__)
+
+struct engine {
+    struct android_app* app;
+    EGLDisplay display;
+    EGLSurface surface;
+    EGLContext context;
+    bool inochiReady;
+};
+
+static double timingFunc(void) {
+    struct timespec ts;
+    clock_gettime(CLOCK_MONOTONIC, &ts);
+    return (double)ts.tv_sec + (double)ts.tv_nsec / 1e9;
+}
+
+static int initDisplay(struct engine* e) {
+    const EGLint attribs[] = {
+        EGL_SURFACE_TYPE, EGL_WINDOW_BIT,
+        EGL_BLUE_SIZE, 8, EGL_GREEN_SIZE, 8, EGL_RED_SIZE, 8,
+>>>>>>> 1f70925c0ba4d18a444b36074540a44005b4e891
+>>>>>>> a1ead2375bd5fe693bf46f0a3e26dc0b054592bd
         EGL_RENDERABLE_TYPE, EGL_OPENGL_ES2_BIT,
         EGL_NONE
     };
@@ -415,6 +465,10 @@ static int initDisplay(struct engine* e) {
     e->display = display;
     e->surface = surface;
     e->context = context;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> a1ead2375bd5fe693bf46f0a3e26dc0b054592bd
     eglQuerySurface(display, surface, EGL_WIDTH, &e->width);
     eglQuerySurface(display, surface, EGL_HEIGHT, &e->height);
 
@@ -427,10 +481,28 @@ static int initDisplay(struct engine* e) {
     }
 
     setupGL(e);
+<<<<<<< HEAD
+=======
+=======
+
+    if (!e->inochiReady) {
+        inInit(&timingFunc);
+        e->inochiReady = true;
+        LOGI("inInit() succeeded");
+        // TODO once inochi2d.h is confirmed: inLoadPuppet("model.inp") from assets, then draw it.
+    }
+
+    glClearColor(0.10f, 0.10f, 0.12f, 1.0f);
+>>>>>>> 1f70925c0ba4d18a444b36074540a44005b4e891
+>>>>>>> a1ead2375bd5fe693bf46f0a3e26dc0b054592bd
     return 0;
 }
 
 static void drawFrame(struct engine* e) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> a1ead2375bd5fe693bf46f0a3e26dc0b054592bd
     if (e->display == EGL_NO_DISPLAY || !e->glReady) return;
 
     static struct timespec lastTime = {0, 0};
@@ -500,14 +572,36 @@ static void drawFrame(struct engine* e) {
         }
     }
 
+<<<<<<< HEAD
+=======
+=======
+    if (e->display == EGL_NO_DISPLAY) return;
+    glClear(GL_COLOR_BUFFER_BIT);
+>>>>>>> 1f70925c0ba4d18a444b36074540a44005b4e891
+>>>>>>> a1ead2375bd5fe693bf46f0a3e26dc0b054592bd
     eglSwapBuffers(e->display, e->surface);
 }
 
 static void termDisplay(struct engine* e) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> a1ead2375bd5fe693bf46f0a3e26dc0b054592bd
     if (e->display != EGL_NO_DISPLAY) {
         eglMakeCurrent(e->display, EGL_NO_SURFACE, EGL_NO_SURFACE, EGL_NO_CONTEXT);
         teardownGL(e);
         e->drawlist = NULL; // owned by the puppet; just drop our cached pointer
+<<<<<<< HEAD
+=======
+=======
+    if (e->inochiReady) {
+        inCleanup();
+        e->inochiReady = false;
+    }
+    if (e->display != EGL_NO_DISPLAY) {
+        eglMakeCurrent(e->display, EGL_NO_SURFACE, EGL_NO_SURFACE, EGL_NO_CONTEXT);
+>>>>>>> 1f70925c0ba4d18a444b36074540a44005b4e891
+>>>>>>> a1ead2375bd5fe693bf46f0a3e26dc0b054592bd
         if (e->context != EGL_NO_CONTEXT) eglDestroyContext(e->display, e->context);
         if (e->surface != EGL_NO_SURFACE) eglDestroySurface(e->display, e->surface);
         eglTerminate(e->display);
@@ -517,6 +611,10 @@ static void termDisplay(struct engine* e) {
     e->surface = EGL_NO_SURFACE;
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> a1ead2375bd5fe693bf46f0a3e26dc0b054592bd
 static void freePuppet(struct engine* e) {
     if (e->puppet) {
         in_puppet_free(e->puppet);
@@ -589,6 +687,11 @@ static int32_t handleInput(struct android_app* app, AInputEvent* event) {
     }
 }
 
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 1f70925c0ba4d18a444b36074540a44005b4e891
+>>>>>>> a1ead2375bd5fe693bf46f0a3e26dc0b054592bd
 static void onAppCmd(struct android_app* app, int32_t cmd) {
     struct engine* e = (struct engine*)app->userData;
     switch (cmd) {
@@ -598,11 +701,21 @@ static void onAppCmd(struct android_app* app, int32_t cmd) {
         case APP_CMD_TERM_WINDOW:
             termDisplay(e);
             break;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> a1ead2375bd5fe693bf46f0a3e26dc0b054592bd
         case APP_CMD_DESTROY:
             freePuppet(e);
             break;
         default:
             break;
+<<<<<<< HEAD
+=======
+=======
+        default: break;
+>>>>>>> 1f70925c0ba4d18a444b36074540a44005b4e891
+>>>>>>> a1ead2375bd5fe693bf46f0a3e26dc0b054592bd
     }
 }
 
@@ -612,15 +725,30 @@ void android_main(struct android_app* app) {
     engine.display = EGL_NO_DISPLAY;
     engine.surface = EGL_NO_SURFACE;
     engine.context = EGL_NO_CONTEXT;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> a1ead2375bd5fe693bf46f0a3e26dc0b054592bd
     engine.zoom = 1.0f;
     app->userData = &engine;
     app->onAppCmd = onAppCmd;
     app->onInputEvent = handleInput;
+<<<<<<< HEAD
+=======
+=======
+    app->userData = &engine;
+    app->onAppCmd = onAppCmd;
+>>>>>>> 1f70925c0ba4d18a444b36074540a44005b4e891
+>>>>>>> a1ead2375bd5fe693bf46f0a3e26dc0b054592bd
     engine.app = app;
 
     while (1) {
         int events;
         struct android_poll_source* source;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> a1ead2375bd5fe693bf46f0a3e26dc0b054592bd
         int pollTimeoutMillis = engine.display != EGL_NO_DISPLAY ? 0 : -1;
         int pollResult;
         while ((pollResult = ALooper_pollOnce(pollTimeoutMillis, NULL, &events, (void**)&source)) >= 0) {
@@ -635,6 +763,17 @@ void android_main(struct android_app* app) {
                 return;
             }
             pollTimeoutMillis = engine.display != EGL_NO_DISPLAY ? 0 : -1;
+<<<<<<< HEAD
+=======
+=======
+        while (ALooper_pollAll(engine.display != EGL_NO_DISPLAY ? 0 : -1, NULL, &events, (void**)&source) >= 0) {
+            if (source != NULL) source->process(app, source);
+            if (app->destroyRequested != 0) {
+                termDisplay(&engine);
+                return;
+            }
+>>>>>>> 1f70925c0ba4d18a444b36074540a44005b4e891
+>>>>>>> a1ead2375bd5fe693bf46f0a3e26dc0b054592bd
         }
         drawFrame(&engine);
     }
